@@ -341,3 +341,90 @@ h3 ~ p {
   .sidebar2 { order: 3; }
   footer    { order: 4; }
 }
+
+/*----ADD POST Page CSS----*/
+
+/*Descendant Selector*/
+div button {
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    color: white;
+}
+
+#choose-button {
+    background-color: #7f7f7f;
+}
+
+
+
+.addpost-container {
+    display:grid;
+    place-items: center;
+    gap:20px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    margin: 10%;
+    background-color: #4e3f39;
+}
+
+@media(max-width: 768px) {
+    .addpost-container {
+        margin: 5%;
+        
+    }
+}
+
+#post-box {
+    display:flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/*Adjacent Sibling Selector*/
+label + textarea {
+    height: 120px;
+    min-width: 0%;
+    max-width: 100%;
+    resize: none;
+}
+
+.addpost-container label {
+    text-align: left;
+    display:flex;
+    align-items: center;
+    color: white;
+}
+
+#select-box {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-left: -40px;
+}
+
+/*Child Selector*/
+div > button {
+    width: 100px;
+    height: 30px;
+}
+
+/*General Sibling Selector*/
+#select-box ~ div {
+    background-color: #1f477d;
+}
+
+/*Pseudo-classes*/
+#choose-button:hover {
+    background-color: darkgray;
+}
+
+#create-post:hover {
+    background-color: blue;
+}
+
+main:has(.addpost-container) {
+    justify-content: center;
+}

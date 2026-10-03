@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add post</title>
+    <link rel="stylesheet" href="post-style.css">
+  </head>
+  <body>
+    <div class="container">
+    <header>
+            <h1>My Blog</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="addPage.html" class="nav-link">Add Post</a></li>
+                </ul>
+            </nav>
+    </header>
+
+    <aside class="sidebar1" aria-label="Primary sidebar"></aside>
+    <aside class="sidebar2" aria-label="Secondary sidebar"></aside>
+
+    <main>
+        <div class="addpost-container">
+            <div id="post-box">
+              <label for="post-body">Post<br>body</label>
+              <textarea id="post-body" placeholder="textarea"></textarea><br><br>
+            </div>
+            <div id="select-box">
+              <label>Select file</label>
+              <button type="button" id="choose-button" class="button">Choose File</button><br><br>
+            </div>
+            <div>
+              <button type="button" id="create-post" class="button" onclick="location.href='index.html'">Create post</button>
+            </div>
+        </div>
+    </main>
+        <footer>
+            <h3>SpillTheTea2026</h3>
+        </footer>
+    </div>
+  </body>
+</html>
