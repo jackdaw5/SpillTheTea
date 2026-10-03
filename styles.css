@@ -366,6 +366,10 @@ div button {
     padding-bottom: 70px;
     margin: 10%;
     background-color: #4e3f39;
+
+    border: solid;
+    border-color: black;
+    border-width: 2px;
 }
 
 @media(max-width: 768px) {
