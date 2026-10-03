@@ -1,0 +1,269 @@
+/* Basic CSS Reset */
+
+/* Color Palette Variables */
+:root {
+  --palette-1: #eaeeef;  /* lightest  - light text / light backgrounds */
+  --palette-2: #adacac;  /* light-mid - HOVER states / secondary text */
+  --palette-3: #271c1f;  /* dark gray - primary dark surface */
+  --palette-4: #0a0909;  /* near black - deepest surface / borders */
+  --palette-5: #3e1017;  /* dark maroon - accent / footer */
+  --palette-6: #270e10;  /* deep maroon - darker accent / borders */
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core body defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-color: var(--palette-4);
+  overflow: hidden; /* desktop: grid handles scroll inside panels */
+}
+
+/* Remove list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove default anchor styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Inherit fonts for form elements */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove button styling */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Avoid text overflows */
+p,
+h3,
+h4,
+h5,
+h6,
+b {
+  overflow-wrap: break-word;
+  color: var(--palette-1);
+}
+/* Big screen */
+
+.container {
+  margin: 2vh;
+  display: grid;
+  height: calc(100vh - 4vh);
+  max-height: calc(100vh - 4vh);
+  grid-gap: 8px;
+  grid-template:
+      "header header header" 15vh
+      "sidebar1 main sidebar2" 1fr
+      "footer footer footer" 12vh
+      / 1fr 3fr 1fr;
+  overflow: hidden;
+}
+
+header {
+  background-repeat: repeat-x;
+  background-size: auto;
+  background-position: center;
+  grid-area: header;
+  border: 7px solid;
+  background-color: var(--palette-5);
+  border-color: var(--palette-4);
+  padding: 1.5vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+header nav a {
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  color: var(--palette-1);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+header nav a:hover {
+  background-color: var(--palette-2);
+  color: var(--palette-4);
+}
+
+.sidebar1 {
+  background-color: var(--palette-3);
+  grid-area: sidebar1;
+  border: 7px solid;
+  border-color: var(--palette-6);
+  padding: 1.5vh;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.sidebar2 {
+  background-color: var(--palette-3);
+  grid-area: sidebar2;
+  border: 7px solid;
+  border-color: var(--palette-6);
+  padding: 1.5vh;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.sidebar1 a:hover,
+.sidebar2 a:hover {
+  background-color: var(--palette-2);
+  color: var(--palette-4);
+}
+
+main {
+  background-color: var(--palette-3);
+  grid-area: main;
+  border: 7px solid;
+  border-color: var(--palette-6);
+  padding: 1.5vh;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+main article:hover {
+  background-color: var(--palette-2);
+  color: var(--palette-4);
+}
+
+footer {
+  background-color: var(--palette-5);
+  grid-area: footer;
+  border: 7px solid var(--palette-4);
+  overflow: auto;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  gap: 2px;
+  min-height: 0;
+  height: 100%;
+}
+
+footer button:hover {
+  background-color: var(--palette-2);
+  color: var(--palette-4);
+}
+
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+  padding: 0.2em 0.7em;
+}
+
+/* Mobile (from 768px) */
+
+@media (max-width: 768px) {
+
+  /* Let the page scroll normally on mobile */
+  html,
+  body {
+    overflow: auto;
+    height: auto;
+  }
+
+  /* Turn the grid container into a vertical flex column */
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: none;
+    margin: 1vh;
+    gap: 8px;
+    overflow: visible;
+  }
+
+  /* Each panel becomes a flex item, stacked top-to-bottom */
+  header,
+  .sidebar1,
+  main,
+  .sidebar2,
+  footer {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    padding: 1rem;
+  }
+
+  /* Header nav stacks nicely */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  /* Nav links become full-width touch targets */
+  header nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  header nav a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.75em 1em;
+  }
+
+  /* Folder grid: single column on phone */
+  .folder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Optional: reorder so main content appears above sidebars */
+  main      { order: 1; }
+  .sidebar1 { order: 2; }
+  .sidebar2 { order: 3; }
+  footer    { order: 4; }
+}
