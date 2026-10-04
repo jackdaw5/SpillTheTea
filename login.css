@@ -1,0 +1,172 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+/* flexbox column layout */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #cfe8ff; /* light blue canvas */
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+/* header + nav bar */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #ffffff;
+}
+
+.site-header h1 {
+  font-size: 1.4rem;
+  color: #0d47a1;
+}
+
+nav ul {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: #0d47a1;
+  background-color: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Home / addPost change background on hover */
+.nav-link:hover {
+  background-color: #1976d2;
+  color: #ffffff;
+}
+
+/* centers the login card */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.login-card {
+  width: min(400px, 100%);
+  background-color: #effeff;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+/* small accent bar at the top of the card */
+.login-card::before {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 50px;
+  background-color: #1976d2;
+  border-radius: 2px;
+  margin-bottom: 0.75rem;
+}
+
+.login-card h2 {
+  color: #0d47a1;
+}
+
+/* the <p> that follows the <h2> */
+.login-card h2 ~ p {
+  color: #444444;
+  margin-bottom: 1rem;
+}
+
+/* form */
+form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #0d47a1;
+}
+
+/* each input right after its label */
+label + input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid #90caf9;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+/* visible focus on a field */
+input:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+/* only the button that is a direct child of form */
+form > button {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: #1976d2;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+form > button:hover {
+  background-color: #0d47a1;
+}
+
+/* footer */
+.site-footer {
+  text-align: center;
+  padding: 0.75rem;
+  background-color: #ffffff;
+  color: #0d47a1;
+}
+
+/* phone layout */
+@media (max-width: 600px) {
+  .site-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}

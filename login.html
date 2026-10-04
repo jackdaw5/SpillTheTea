@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <!-- navigation bar -->
+  <header class="site-header">
+    <h1>My Blog</h1>
+    <nav>
+      <ul>
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="addPost.html">Add Post</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- the login form -->
+  <main>
+    <article class="login-card">
+      <h2>Login</h2>
+      <p>Sign in to continue.</p>
+
+      <!-- both fields are required, browser blocks submission unless email and username are filled -->
+      <form onsubmit="window.location.href='index.html'; return false;">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+
+        <button type="submit">Login</button>
+      </form>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <h3>SpillTheTea2026</h3>
+  </footer>
+
+</body>
+</html>
