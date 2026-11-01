@@ -10,13 +10,30 @@
     <div class="container">
         <header>
             <h1>My Blog</h1>
+
             <nav>
                 <ul>
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="addPage.html" class="nav-link">Add Post</a></li>
+                <li><a class="nav-link" href="index.html">Home</a></li>
+                <li><a class="nav-link" href="addPage.html">Add Post</a></li>
                 </ul>
             </nav>
-        </header>
+
+            <!-- photo + dropdown: last item in the header row -->
+            <div class="dropdown" id="user-dropdown">
+                <button type="button" class="dropdown-toggle" id="dropdown-toggle"
+                        aria-haspopup="true" aria-expanded="false" aria-label="Open user menu">
+                <img id="user-avatar" class="avatar"
+                    src="images/profile.jpg" alt="User photo" width="44" height="44">
+                </button>
+
+                <ul class="dropdown-menu" id="dropdown-menu">
+                <li class="user-name" id="user-name">User Name</li>  <!-- placeholder name and email -->
+                <li class="user-email" id="user-email">user@example.com</li>
+                <li class="dropdown-divider" role="separator"></li>
+                <li><button type="button" class="logout-button" id="logout-button">Logout</button></li> <!-- logout nav functionality in js -->
+                </ul>
+            </div>
+            </header>
 
         <aside class="sidebar1" aria-label="Primary sidebar">
 
@@ -89,5 +106,6 @@
         </footer>
 
     </div>
+    <script src="script.js"></script>
 </body>
 </html>

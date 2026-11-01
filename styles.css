@@ -432,3 +432,120 @@ div > button {
 main:has(.addpost-container) {
     justify-content: center;
 }
+
+/* task 7: user dropdown menu :D */
+
+header {
+  flex-wrap: nowrap;
+}
+
+/* push nav + photo to the right as one group */
+header nav {
+  margin-left: auto;
+}
+
+/* the dropdown sits right after "Add Post", sized to the photo */
+.dropdown {
+  position: relative;
+  width: fit-content;
+  margin-left: 0;   /* spacing comes from header's gap: 1rem */
+}
+
+/* override your existing broad "div button" styles */
+#user-dropdown .dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+#user-dropdown .dropdown-toggle:focus-visible {
+  outline: 3px solid var(--palette-2);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+#user-dropdown .avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--palette-2);
+}
+
+#user-dropdown .dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 230px;
+  margin: 0;
+  padding: 0.4rem 0;
+  display: none;
+  background-color: var(--palette-5);
+  border: 2px solid var(--palette-6);
+  border-radius: 10px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
+  z-index: 1000;
+}
+
+#user-dropdown.open .dropdown-menu {
+  display: block;
+}
+
+#user-dropdown .dropdown-menu li {
+  padding: 0.55rem 1rem;
+  color: var(--palette-1);
+}
+
+#user-dropdown .dropdown-menu .user-name {
+  font-weight: 700;
+}
+
+#user-dropdown .dropdown-menu .user-email {
+  color: var(--palette-2);
+  font-size: 0.95rem;
+}
+
+#user-dropdown .dropdown-divider {
+  height: 1px;
+  padding: 0;
+  background-color: var(--palette-6);
+  margin: 0.35rem 0;
+}
+
+#user-dropdown .logout-button {
+  width: 100%;
+  height: auto;
+  border: none;
+  text-align: left;
+  font: inherit;
+  color: var(--palette-1);
+  background: transparent;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+}
+
+#user-dropdown .logout-button:hover,
+#user-dropdown .logout-button:focus-visible {
+  background-color: var(--palette-2);
+  color: var(--palette-4);
+}
+
+/* mobile support */
+@media (max-width: 768px) {
+  #user-dropdown {
+    margin-left: 0;
+    align-self: flex-end;
+  }
+
+  #user-dropdown .dropdown-menu {
+    right: 0;
+    left: auto;
+    width: min(88vw, 280px);
+  }
+}
