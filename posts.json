@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Post 1: The Beginning",
+    "author": "Spill T. Tea",
+    "date": "2026-10-20",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "imageUrl": "https://picsum.photos/seed/tea1/800/400"
+  },
+  {
+    "id": 2,
+    "title": "Post 2: Midweek Thoughts",
+    "author": "Spill T. Tea",
+    "date": "2026-10-22",
+    "content": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "imageUrl": "https://picsum.photos/seed/tea2/800/400"
+  },
+  {
+    "id": 3,
+    "title": "Post 3: A Funny Picture",
+    "author": "Spill T. Tea",
+    "date": "2026-10-23",
+    "content": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "imageUrl": "https://picsum.photos/seed/tea3/800/400"
+  },
+  {
+    "id": 4,
+    "title": "Post 4: Coding is Fun",
+    "author": "Spill T. Tea",
+    "date": "2026-10-24",
+    "content": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "imageUrl": ""
+  },
+  {
+    "id": 5,
+    "title": "Post 5: Weekend Vibes",
+    "author": "Spill T. Tea",
+    "date": "2026-10-25",
+    "content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+    "imageUrl": "https://picsum.photos/seed/tea5/800/400"
+  },
+  {
+    "id": 6,
+    "title": "Post 6: Coffee vs Tea",
+    "author": "Spill T. Tea",
+    "date": "2026-10-26",
+    "content": "Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    "imageUrl": "https://picsum.photos/seed/tea6/800/400"
+  },
+  {
+    "id": 7,
+    "title": "Post 7: JSON is Easy",
+    "author": "Spill T. Tea",
+    "date": "2026-10-27",
+    "content": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.",
+    "imageUrl": ""
+  },
+  {
+    "id": 8,
+    "title": "Post 8: Fetch API",
+    "author": "Spill T. Tea",
+    "date": "2026-10-28",
+    "content": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
+    "imageUrl": "https://picsum.photos/seed/tea8/800/400"
+  },
+  {
+    "id": 9,
+    "title": "Post 9: CSS Grid",
+    "author": "Spill T. Tea",
+    "date": "2026-10-29",
+    "content": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.",
+    "imageUrl": "https://picsum.photos/seed/tea9/800/400"
+  },
+  {
+    "id": 10,
+    "title": "Post 10: The Finale",
+    "author": "Spill T. Tea",
+    "date": "2026-10-30",
+    "content": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
+    "imageUrl": "https://picsum.photos/seed/tea10/800/400"
+  }
+]
