@@ -23,23 +23,26 @@
     <aside class="sidebar2" aria-label="Secondary sidebar"></aside>
 
     <main>
+      <form action="/index.html">
         <div class="addpost-container">
             <div id="post-box">
               <label for="post-body">Post<br>body</label>
-              <textarea id="post-body" placeholder="textarea"></textarea><br><br>
+              <textarea id="post-body" name="body" placeholder="textarea"></textarea>
             </div>
             <div id="select-box">
-              <label>Select file</label>
+              <label for="file">Select file</label>
+              <input type="file" id="file" name="file" hidden>
               <button type="button" id="choose-button" class="button">Choose File</button><br><br>
             </div>
             <div>
-              <button type="button" id="create-post" class="button" onclick="location.href='index.html'">Create post</button>
+              <input type="submit" id="create-post" class="button" value="Create post">
             </div>
         </div>
+      </form>
     </main>
-        <footer>
-            <h3>SpillTheTea2026</h3>
-        </footer>
+      <footer>
+        <h3>SpillTheTea2026</h3>
+      </footer>
     </div>
   </body>
 </html>

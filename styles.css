@@ -409,8 +409,8 @@ label + textarea {
     margin-left: -40px;
 }
 
-/*Child Selector*/
-div > button {
+/*Direct child Selector*/
+div > button, input {
     width: 100px;
     height: 30px;
 }
