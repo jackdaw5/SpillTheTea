@@ -64,6 +64,10 @@ document.addEventListener("DOMContentLoaded", function () {
      ========================================= */
   async function loadPosts() {
     try {
+
+      // task 4: fetch from online endpoint
+      // const response = await fetch("https://api.npoint.io/5ef0416ab21afa3d4fae");
+
       
       // task 5: fetch from local json file
       const response = await fetch("posts.json");
