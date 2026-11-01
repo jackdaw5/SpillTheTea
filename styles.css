@@ -28,6 +28,8 @@ html:focus-within {
 html,
 body {
   height: 100%;
+  min-width: 450px;
+  min-height: 820px;
 }
 
 body {
@@ -35,7 +37,8 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   background-color: var(--palette-4);
-  overflow: hidden;
+  overflow: auto; 
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 ul,
@@ -83,8 +86,9 @@ b {
 .container {
   margin: 2vh;
   display: grid;
-  height: calc(100vh - 4vh);
-  max-height: calc(100vh - 4vh);
+  height: calc(max(100vh, 820px) - 4vh); 
+  max-height: calc(max(100vh, 820px) - 4vh);
+  width: calc(max(100vw, 450px) - 4vw);
   grid-gap: 8px;
   grid-template:
       "header header header" 15vh
@@ -94,17 +98,31 @@ b {
   overflow: hidden;
 }
 
+.container.no-sidebars {
+  grid-template:
+      "header" 15vh
+      "main"   1fr
+      "footer" 12vh
+      / 1fr;
+}
+
+.container.no-sidebars .sidebar1,
+.container.no-sidebars .sidebar2 {
+  display: none;
+}
+
 header {
   grid-area: header;
   border: 7px solid;
   background-color: var(--palette-5);
   border-color: var(--palette-4);
-  padding: 3vh;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-wrap: nowrap; 
   gap: 1rem;
+  padding: 0 2vw; 
+  height: 100%; 
 }
 
 header h1 {
@@ -112,28 +130,138 @@ header h1 {
   color: var(--palette-1);
 }
 
-nav ul {
+.header-left {
   display: flex;
-  gap: 0.75rem;
+  align-items: center;
+  gap: 2rem; 
 }
 
-nav > ul {
-  align-items: center;
+header nav ul {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {
-  display: inline-block;
-  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 6px;
   color: var(--palette-1);
   background-color: transparent;
   transition: background-color 0.2s ease, color 0.2s ease;
-  font-size: 1.5em;
 }
 
 .nav-link:hover {
   background-color: var(--palette-2);
   color: var(--palette-4);
+}
+
+.dropdown {
+  position: relative;
+  margin-left: auto; 
+  display: flex;
+  align-items: center;
+}
+
+#user-dropdown .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+#user-dropdown .dropdown-toggle:focus-visible {
+  outline: 3px solid var(--palette-2);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+#user-dropdown .avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--palette-2);
+}
+
+#user-dropdown .dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 240px;
+  margin: 0;
+  padding: 0.6rem 0;
+  display: none;
+  background-color: var(--palette-4); 
+  border: 5px solid var(--palette-6);
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45); 
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#user-dropdown .dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 14px; 
+  width: 12px;
+  height: 12px;
+  background-color: var(--palette-4);
+  border-top: 2px solid var(--palette-6);
+  border-left: 2px solid var(--palette-6);
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+#user-dropdown.open .dropdown-menu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#user-dropdown .dropdown-menu li {
+  padding: 0.6rem 1.25rem;
+  color: var(--palette-1);
+}
+
+#user-dropdown .dropdown-menu .user-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+}
+
+#user-dropdown .dropdown-menu .user-email {
+  color: var(--palette-2);
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+#user-dropdown .logout-button {
+  width: 100%;
+  border: none;
+  text-align: left;
+  font: inherit;
+  color: #ff8a8a; 
+  background: transparent;
+  padding: 0.6rem 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#user-dropdown .logout-button:hover,
+#user-dropdown .logout-button:focus-visible {
+  background-color: rgba(255, 100, 100, 0.1); 
+  color: #ffb3b3;
 }
 
 .sidebar1 {
@@ -284,20 +412,19 @@ h3 ~ p {
 
 @media (max-width: 768px) {
 
-  html,
-  body {
-    overflow: auto;
-    height: auto;
-  }
-
   .container {
     display: flex;
     flex-direction: column;
+    min-height: calc(max(100vh, 820px) - 2vh);
     height: auto;
     max-height: none;
     margin: 1vh;
     gap: 8px;
     overflow: visible;
+  }
+
+  main {
+    flex-grow: 1; 
   }
 
   header,
@@ -313,23 +440,7 @@ h3 ~ p {
   }
 
   header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  header nav {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  header nav a {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 0.75em 1em;
+    flex-wrap: wrap; 
   }
 
   .post img {
@@ -345,7 +456,7 @@ h3 ~ p {
 /*----ADD POST Page CSS----*/
 
 /*Descendant Selector*/
-div button {
+.addpost-container button {
     border: solid;
     border-color: black;
     border-width: 1px;
@@ -356,73 +467,84 @@ div button {
     background-color: #7f7f7f;
 }
 
-
-
 .addpost-container {
-    display:grid;
+    display: grid;
     place-items: center;
-    gap:20px;
-    padding-top: 70px;
-    padding-bottom: 70px;
-    margin: 10%;
+    gap: 20px;
+    padding: 5vh 2vw;
+    width: 100%;
+    height: 100%;
+    max-width: 900px;
+    margin: 0 auto;
     background-color: #4e3f39;
-
-    border: solid;
-    border-color: black;
-    border-width: 2px;
+    border: 2px solid black;
 }
 
 @media(max-width: 768px) {
     .addpost-container {
-        margin: 5%;
-        
+        height: auto;
+        padding: 5vh 5vw;
     }
 }
 
 #post-box {
-    display:flex;
+    display: flex;
     flex-direction: row;
     align-items: flex-start;
     gap: 10px;
+    width: 100%;
+    max-width: 600px;
 }
 
 /*Adjacent Sibling Selector*/
 label + textarea {
-    height: 120px;
-    min-width: 0%;
-    max-width: 100%;
+    height: 150px;
+    width: 100%;
+    flex-grow: 1;
     resize: none;
+    padding: 0.5rem;
 }
 
 .addpost-container label {
     text-align: left;
-    display:flex;
+    display: flex;
     align-items: center;
     color: white;
+    white-space: nowrap;
 }
 
 #select-box {
-    display:flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    margin-left: -40px;
+    width: 100%;
+    max-width: 600px;
+    justify-content: flex-start;
 }
 
 /*Child Selector*/
-div > button {
-    width: 100px;
-    height: 30px;
+.addpost-container div > button {
+    width: 120px;
+    height: 35px;
 }
 
 /*General Sibling Selector*/
 #select-box ~ div {
-    background-color: #1f477d;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
 }
 
 /*Pseudo-classes*/
 #choose-button:hover {
     background-color: darkgray;
+}
+
+#create-post {
+    background-color: #1f477d;
+    border-radius: 6px;
 }
 
 #create-post:hover {
@@ -431,121 +553,85 @@ div > button {
 
 main:has(.addpost-container) {
     justify-content: center;
+    align-items: stretch;
 }
 
-/* task 7: user dropdown menu :D */
+/* login page */
 
-header {
-  flex-wrap: nowrap;
-}
-
-/* push nav + photo to the right as one group */
-header nav {
-  margin-left: auto;
-}
-
-/* the dropdown sits right after "Add Post", sized to the photo */
-.dropdown {
-  position: relative;
-  width: fit-content;
-  margin-left: 0;   /* spacing comes from header's gap: 1rem */
-}
-
-/* override your existing broad "div button" styles */
-#user-dropdown .dropdown-toggle {
-  display: inline-flex;
-  align-items: center;
+main:has(.login-card) {
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
+  align-items: center;
 }
 
-#user-dropdown .dropdown-toggle:focus-visible {
-  outline: 3px solid var(--palette-2);
-  outline-offset: 2px;
-  border-radius: 50%;
-}
-
-#user-dropdown .avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--palette-2);
-}
-
-#user-dropdown .dropdown-menu {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  min-width: 230px;
-  margin: 0;
-  padding: 0.4rem 0;
-  display: none;
+.login-card {
+  width: min(420px, 100%);
   background-color: var(--palette-5);
-  border: 2px solid var(--palette-6);
+  border: 7px solid var(--palette-6);
   border-radius: 10px;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
-  z-index: 1000;
+  padding: 1.5rem;
 }
 
-#user-dropdown.open .dropdown-menu {
+.login-card::before {
+  content: "";
   display: block;
-}
-
-#user-dropdown .dropdown-menu li {
-  padding: 0.55rem 1rem;
-  color: var(--palette-1);
-}
-
-#user-dropdown .dropdown-menu .user-name {
-  font-weight: 700;
-}
-
-#user-dropdown .dropdown-menu .user-email {
-  color: var(--palette-2);
-  font-size: 0.95rem;
-}
-
-#user-dropdown .dropdown-divider {
-  height: 1px;
-  padding: 0;
-  background-color: var(--palette-6);
-  margin: 0.35rem 0;
-}
-
-#user-dropdown .logout-button {
-  width: 100%;
-  height: auto;
-  border: none;
-  text-align: left;
-  font: inherit;
-  color: var(--palette-1);
-  background: transparent;
-  padding: 0.55rem 1rem;
-  cursor: pointer;
-}
-
-#user-dropdown .logout-button:hover,
-#user-dropdown .logout-button:focus-visible {
+  height: 4px;
+  width: 50px;
   background-color: var(--palette-2);
-  color: var(--palette-4);
+  border-radius: 2px;
+  margin-bottom: 0.75rem;
 }
 
-/* mobile support */
-@media (max-width: 768px) {
-  #user-dropdown {
-    margin-left: 0;
-    align-self: flex-end;
-  }
+.login-card h2 {
+  color: var(--palette-1);
+}
 
-  #user-dropdown .dropdown-menu {
-    right: 0;
-    left: auto;
-    width: min(88vw, 280px);
-  }
+.login-card h2 ~ p {
+  color: var(--palette-2);
+  margin-bottom: 1rem;
+}
+
+.login-card form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--palette-1);
+}
+
+.login-card label + input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--palette-6);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  background-color: var(--palette-4);
+  color: var(--palette-1);
+}
+
+.login-card label + input::placeholder {
+  color: var(--palette-2);
+  opacity: 0.7;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: var(--palette-2);
+  background-color: var(--palette-3);
+}
+
+.login-card form > button {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: var(--palette-2);
+  color: var(--palette-6);
+  border: 2px solid var(--palette-6);
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.login-card form > button:hover,
+.login-card form > button:focus-visible {
+  background-color: var(--palette-1);
+  color: var(--palette-5);
 }

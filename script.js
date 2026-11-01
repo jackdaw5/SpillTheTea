@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-  /* =========================================
+
+  /* -----------------------------------------
      task 7: dropdown menu logic n stuff
-     ========================================= */
+     ----------------------------------------- */
   const dropdown = document.getElementById("user-dropdown");
   if (dropdown) {
     const toggleButton = document.getElementById("dropdown-toggle");
@@ -11,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const logoutButton = document.getElementById("logout-button");
 
     const currentUser = {
-      name: "Spill T. Tea",
-      email: "spillthetea@example.com",
+      name: localStorage.getItem("username") || "Spill T. Tea",
+      email: localStorage.getItem("email") || "spillthetea@example.com",
       photo: "images/profile.jpg"
     };
 
@@ -53,16 +54,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (logoutButton) {
       logoutButton.addEventListener("click", function () {
+        //clear saved user so the login page starts fresh
+        localStorage.removeItem("username");
+        localStorage.removeItem("email");
         //we leave and go back to the login page :D
         window.location.href = "login.html";
       });
     }
   }
 
-  /* =========================================
+  /* -----------------------------------------
+     Add Post page: save post to localStorage
+     ----------------------------------------- */
+  const createPostButton = document.getElementById("create-post");
+  if (createPostButton) {
+    createPostButton.addEventListener("click", function () {
+      const bodyInput = document.getElementById("post-body");
+      const body = bodyInput ? bodyInput.value.trim() : "";
+
+      if (!body) {
+        alert("Please write something before posting.");
+        return;
+      }
+
+      const posts = JSON.parse(localStorage.getItem("userPosts") || "[]");
+      posts.unshift({
+        id: Date.now(),
+        title: "New Post",
+        author: localStorage.getItem("username") || "Spill T. Tea",
+        date: new Date().toISOString().slice(0, 10),
+        content: body,
+        imageUrl: ""
+      });
+      localStorage.setItem("userPosts", JSON.stringify(posts));
+      window.location.href = "index.html";
+    });
+  }
+
+  /* -----------------------------------------
      tasks 4, 5 & 6: fetch json and render the posts
-     ========================================= */
+     ----------------------------------------- */
   async function loadPosts() {
+    const mainElement = document.querySelector("main");
+    if (!mainElement) return;
+    
+    // skip on login and addpost pages so we don't wipe their content
+    if (mainElement.querySelector(".login-card")) return;
+    if (mainElement.querySelector(".addpost-container")) return;
+
     try {
 
       // task 4: fetch from online endpoint
@@ -75,13 +114,16 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!response.ok) throw new Error("Failed to fetch posts");
       
       const posts = await response.json();
-      const mainElement = document.querySelector("main");
+
+      // merge posts created through the Add Post page (newest first)
+      const userPosts = JSON.parse(localStorage.getItem("userPosts") || "[]");
+      const allPosts = [...userPosts, ...posts];
       
       // clear any existing content
       mainElement.innerHTML = ""; 
       
       // loop through JSON and create HTML elements
-      posts.forEach(post => {
+      allPosts.forEach(post => {
         const article = document.createElement("article");
         article.className = "post";
         
@@ -100,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
       
     } catch (error) {
       console.error("Error loading posts:", error);
-      document.querySelector("main").innerHTML = "<p style='color:white;'>Error loading posts.</p>";
+      mainElement.innerHTML = "<p style='color:#b91c1c; background:#fee2e2; padding:12px; border-radius:8px;'>Error loading posts: " + error.message + "</p>";
     }
   }
 
